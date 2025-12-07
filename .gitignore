@@ -1,0 +1,72 @@
+# ----------------------------
+# Fichiers binaires et build
+# ----------------------------
+[Bb]in/
+[Oo]bj/
+out/
+
+# ----------------------------
+# Fichiers de configuration Visual Studio
+# ----------------------------
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ----------------------------
+# Packages NuGet
+# ----------------------------
+*.nupkg
+*.snupkg
+*.nuspec
+*.symbols.nupkg
+packages/
+# Ne pas tracker les packages restaurés par dotnet restore
+**/packages/*
+*.lock.json
+
+# ----------------------------
+# Fichiers générés par le SDK .NET
+# ----------------------------
+*.DotSettings.user
+*.DotSettings
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ----------------------------
+# Fichiers temporaires Windows
+# ----------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ----------------------------
+# Fichiers de log et debug
+# ----------------------------
+*.log
+*.vspscc
+*.vssscc
+
+# ----------------------------
+# DotNet Core / Entity Framework
+# ----------------------------
+appsettings.Development.json
+appsettings.Local.json
+*.db
+*.sqlite
+Migrations/
+
+# ----------------------------
+# Rider
+# ----------------------------
+.idea/
+*.iml
+
+# ----------------------------
+# JetBrains Rider / ReSharper
+# ----------------------------
+_ReSharper.*
+*.DotSettings
