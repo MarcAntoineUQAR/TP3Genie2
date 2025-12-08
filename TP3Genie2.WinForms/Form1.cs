@@ -1,5 +1,5 @@
-using Domain.Entities;
-using Domain.Interfaces;
+using TP3Genie2.Domain.Entities;
+using TP3Genie2.Domain.Interfaces;
 using System;
 using System.Windows.Forms;
 
@@ -17,8 +17,8 @@ namespace TP3Genie2.WinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var film = _filmRepository.GetFilmById(1);
-            MessageBox.Show(film?.Title ?? "Film introuvable");
+            var film = _filmRepository.GetById(1);
+            MessageBox.Show(film?.Titre ?? "Film introuvable");
         }
     }
 }
