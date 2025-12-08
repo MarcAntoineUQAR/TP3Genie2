@@ -16,6 +16,7 @@ namespace TP3Genie2.Infrastructure.Services
         public Utilisateur? Login(string username, string password)
         {
             var user = _repo.Login(username, password);
+
             if (user != null)
                 _currentUser = user;
 
@@ -35,6 +36,11 @@ namespace TP3Genie2.Infrastructure.Services
         public void CreateMember(Membre membre)
         {
             _repo.CreateMember(membre);
+        }
+
+        public void Logout()
+        {
+            _currentUser = null;
         }
     }
 }
