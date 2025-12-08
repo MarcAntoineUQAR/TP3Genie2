@@ -24,14 +24,15 @@ namespace TP3Genie2.Infrastructure.Repositories
 				.FirstOrDefault(f => f.Id == id);
 		}
 
-		public List<Film> Search(string query)
-		{
-			return _context.Films
-				.Where(f => f.Titre.Contains(query))
-				.ToList();
-		}
+        public List<Film> Search(string query)
+        {
+            return _context.Films
+                .Include(f => f.Categorie)
+                .Where(f => f.Titre.Contains(query) || query == "")
+                .ToList();
+        }
 
-		public void Add(Film film)
+        public void Add(Film film)
 		{
 			_context.Films.Add(film);
 			_context.SaveChanges();
@@ -51,5 +52,12 @@ namespace TP3Genie2.Infrastructure.Repositories
 			_context.Films.Remove(film);
 			_context.SaveChanges();
 		}
-	}
+
+        public List<Categorie> GetAllCategories()
+        {
+            return _context.Categories
+                .OrderBy(c => c.Nom)
+                .ToList();
+        }
+    }
 }

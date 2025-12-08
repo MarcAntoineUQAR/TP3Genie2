@@ -14,5 +14,6 @@ namespace TP3Genie2.Domain.Interfaces
 		void Add(Film film);
 		void Update(Film film);
 		void Delete(int id);
-	}
+        List<Categorie> GetAllCategories();
+    }
 }
