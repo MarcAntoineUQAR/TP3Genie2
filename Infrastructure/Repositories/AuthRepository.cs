@@ -35,5 +35,10 @@ namespace TP3Genie2.Infrastructure.Repositories
             _context.Membres.Add(membre);
             _context.SaveChanges();
         }
+
+        public void Logout()
+        {
+
+        }
     }
 }

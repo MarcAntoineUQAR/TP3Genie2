@@ -13,5 +13,6 @@ namespace TP3Genie2.Domain.Interfaces
         Utilisateur? GetLoggedUser();
         void CreateUser(Utilisateur user);
         void CreateMember(Membre membre);
+        void Logout();
     }
 }

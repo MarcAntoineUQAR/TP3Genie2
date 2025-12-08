@@ -20,7 +20,11 @@ namespace TP3Genie2.WinForms
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            services.AddTransient<FormLogin>();
             services.AddTransient<FormConsulterFilms>();
+
+            services.AddScoped<FormLogin>();
+            services.AddScoped<FormRegister>();
 
             services.AddScoped<IAbonnementRepository, AbonnementRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -38,6 +42,8 @@ namespace TP3Genie2.WinForms
 
             var provider = services.BuildServiceProvider();
 
+            services.AddSingleton<IServiceProvider>(provider);
+
             using (var scope = provider.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -45,7 +51,7 @@ namespace TP3Genie2.WinForms
             }
 
             ApplicationConfiguration.Initialize();
-            Application.Run(provider.GetRequiredService<FormConsulterFilms>());
+            Application.Run(provider.GetRequiredService<FormLogin>());
         }
     }
 }

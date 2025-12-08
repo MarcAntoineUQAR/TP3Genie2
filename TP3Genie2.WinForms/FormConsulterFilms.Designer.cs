@@ -48,7 +48,7 @@ namespace TP3Genie2.WinForms
 
             panelHeader = new Panel
             {
-                BackColor = Color.FromArgb(0, 90, 200),
+                BackColor = Color.FromArgb(60, 40, 200),
                 Dock = DockStyle.Top,
                 Height = 55
             };
@@ -120,7 +120,7 @@ namespace TP3Genie2.WinForms
             btnFiltrer = new Button
             {
                 Text = "Appliquer Filtre",
-                BackColor = Color.FromArgb(0, 90, 200),
+                BackColor = Color.FromArgb(60, 40, 200),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Location = new Point(400, 85),

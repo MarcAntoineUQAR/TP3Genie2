@@ -1,24 +1,32 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TP3Genie2.Domain.Entities;
 using TP3Genie2.Domain.Interfaces;
+using TP3Genie2.Infrastructure.Services;
 
 namespace TP3Genie2.WinForms
 {
     public partial class FormConsulterFilms : Form
     {
+        private readonly IAuthService _authService;
+        private readonly IServiceProvider _provider;
         private readonly IFilmService _filmService;
         private readonly IUtilisateurService _userService;
         private readonly IMembreService _membreService;
 
         public FormConsulterFilms(
+            IServiceProvider provider,
+            IAuthService authService,
             IFilmService filmService,
-            IUtilisateurService userService = null,
-            IMembreService membreService = null)
+            IUtilisateurService userService,
+            IMembreService membreService)
         {
+            _provider = provider;
+            _authService = authService;
             _filmService = filmService;
             _userService = userService;
             _membreService = membreService;
@@ -28,6 +36,8 @@ namespace TP3Genie2.WinForms
             this.Load += FormConsulterFilms_Load;
             btnFiltrer.Click += BtnFiltrer_Click;
             btnClearFilters.Click += BtnClearFilters_Click;
+
+            linkDeconnexion.Click += LinkDeconnexion_Click;
         }
 
         private void FormConsulterFilms_Load(object sender, EventArgs e)
@@ -92,6 +102,15 @@ namespace TP3Genie2.WinForms
 
             foreach (var film in films)
                 panelFilms.Controls.Add(CreateFilmCard(film));
+        }
+
+        private void LinkDeconnexion_Click(object sender, EventArgs e)
+        {
+            _authService.Logout();
+
+            var login = _provider.GetRequiredService<FormLogin>();
+            login.Show();
+            this.Close();
         }
 
         private Panel CreateFilmCard(Film f)
