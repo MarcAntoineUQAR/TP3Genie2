@@ -36,5 +36,10 @@ namespace TP3Genie2.Infrastructure.Services
         {
             _repo.Delete(id);
         }
+
+        public List<Categorie> GetAllCategories()
+        {
+            return _repo.GetAllCategories();
+        }
     }
 }

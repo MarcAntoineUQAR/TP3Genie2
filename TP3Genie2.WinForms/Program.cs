@@ -4,7 +4,6 @@ using TP3Genie2.Domain.Interfaces;
 using TP3Genie2.Infrastructure.Data;
 using TP3Genie2.Infrastructure.Repositories;
 using TP3Genie2.Infrastructure.Services;
-using TP3Genie2.WinForms.Controllers;
 
 namespace TP3Genie2.WinForms
 {
@@ -15,12 +14,13 @@ namespace TP3Genie2.WinForms
         {
             var services = new ServiceCollection();
 
-            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FilmsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+            var connectionString =
+                "Server=(localdb)\\MSSQLLocalDB;Database=FilmsDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddTransient<Form1>();
+            services.AddTransient<FormConsulterFilms>();
 
             services.AddScoped<IAbonnementRepository, AbonnementRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -36,17 +36,16 @@ namespace TP3Genie2.WinForms
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IUtilisateurService, UtilisateurService>();
 
-            services.AddTransient<AbonnementController>();
-            services.AddTransient<AuthController>();
-            services.AddTransient<FilmController>();
-            services.AddTransient<MembreController>();
-            services.AddTransient<TransactionController>();
-            services.AddTransient<UtilisateurController>();
-
             var provider = services.BuildServiceProvider();
 
+            using (var scope = provider.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                DbInitializer.Initialize(db);
+            }
+
             ApplicationConfiguration.Initialize();
-            Application.Run(provider.GetRequiredService<Form1>());
+            Application.Run(provider.GetRequiredService<FormConsulterFilms>());
         }
     }
 }
