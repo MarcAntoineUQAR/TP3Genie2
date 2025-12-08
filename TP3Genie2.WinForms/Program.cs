@@ -1,9 +1,10 @@
-using Domain.Interfaces;
-using Domain.Entities;
-using Infrastructure.Data;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TP3Genie2.Domain.Interfaces;
+using TP3Genie2.Infrastructure.Data;
+using TP3Genie2.Infrastructure.Repositories;
+using TP3Genie2.Infrastructure.Services;
+using TP3Genie2.WinForms.Controllers;
 
 namespace TP3Genie2.WinForms
 {
@@ -14,17 +15,33 @@ namespace TP3Genie2.WinForms
         {
             var services = new ServiceCollection();
 
-            // Connexion MySQL
-            var connectionString = "Server=localhost;Database=filmsdb;User=root;Password=admin123*;";
+            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=FilmsDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                options.UseSqlServer(connectionString));
 
-            // Repository
-            services.AddScoped<IFilmRepository, FilmRepository>();
-
-            // Formulaire
             services.AddTransient<Form1>();
+
+            services.AddScoped<IAbonnementRepository, AbonnementRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IMembreRepository, MembreRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+
+            services.AddScoped<IAbonnementService, AbonnementService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IFilmService, FilmService>();
+            services.AddScoped<IMembreService, MembreService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<IUtilisateurService, UtilisateurService>();
+
+            services.AddTransient<AbonnementController>();
+            services.AddTransient<AuthController>();
+            services.AddTransient<FilmController>();
+            services.AddTransient<MembreController>();
+            services.AddTransient<TransactionController>();
+            services.AddTransient<UtilisateurController>();
 
             var provider = services.BuildServiceProvider();
 
