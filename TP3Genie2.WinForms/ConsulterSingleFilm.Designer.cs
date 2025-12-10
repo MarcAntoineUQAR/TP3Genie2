@@ -145,7 +145,6 @@
             int contentWidth = 600;
             int topStart = 120;
 
-            // Title
             this.lblTitle.Font = new Font("Segoe UI", 36, FontStyle.Bold);
             this.lblTitle.Location = new Point(leftX, topStart);
             this.lblTitle.Size = new Size(750, 80);
@@ -154,7 +153,6 @@
 
             int offset = topStart + 100;
 
-            // Year
             this.lblYearLabel.Text = "Année de sortie:";
             this.lblYearLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblYearLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -169,7 +167,6 @@
 
             offset += 30;
 
-            // Duration
             this.lblDurationLabel.Text = "Durée:";
             this.lblDurationLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblDurationLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -184,7 +181,6 @@
 
             offset += 30;
 
-            // Price
             this.lblPriceLabel.Text = "Prix:";
             this.lblPriceLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblPriceLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -199,7 +195,6 @@
 
             offset += 30;
 
-            // Status
             this.lblStatusLabel.Text = "Status:";
             this.lblStatusLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblStatusLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -214,7 +209,6 @@
 
             offset += 35;
 
-            // Category
             this.lblCategoryLabel.Text = "Catégorie:";
             this.lblCategoryLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblCategoryLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -229,7 +223,6 @@
 
             offset += 35;
 
-            // Languages
             this.lblLanguagesLabel.Text = "Langues Disponibles:";
             this.lblLanguagesLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblLanguagesLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -244,7 +237,6 @@
 
             offset += 60;
 
-            // Subtitles
             this.lblSubtitlesLabel.Text = "Sous-titres disponibles:";
             this.lblSubtitlesLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblSubtitlesLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -259,7 +251,6 @@
 
             offset += 55;
 
-            // Keywords
             this.lblKeywordsLabel.Text = "Mots clés:";
             this.lblKeywordsLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblKeywordsLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -274,7 +265,6 @@
 
             offset += 70;
 
-            // Synopsis
             this.lblSynopsisLabel.Text = "Synopsis:";
             this.lblSynopsisLabel.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             this.lblSynopsisLabel.ForeColor = Color.FromArgb(60, 60, 60);
@@ -289,7 +279,6 @@
 
             offset += 130;
 
-            // Credits Button
             this.btnCredits.Text = "Consulter crédits";
             this.btnCredits.Font = new Font("Segoe UI", 14, FontStyle.Bold);
             this.btnCredits.BackColor = Color.FromArgb(60, 40, 200);
@@ -299,19 +288,16 @@
             this.btnCredits.FlatStyle = FlatStyle.Flat;
             this.btnCredits.Cursor = Cursors.Hand;
 
-            // Vertical separator line
             Panel separator = new Panel();
             separator.BackColor = Color.Gray;
             separator.Location = new Point(875, 135);
             separator.Size = new Size(2, 580);
 
-            // Picture Poster
             this.picturePoster.Location = new Point(915, 135);
             this.picturePoster.Size = new Size(500, 480);
             this.picturePoster.SizeMode = PictureBoxSizeMode.Zoom;
             this.picturePoster.BorderStyle = BorderStyle.FixedSingle;
 
-            // Trailer Button
             this.btnTrailer.Text = "Visionner Bande-Annonce";
             this.btnTrailer.Font = new Font("Segoe UI", 14, FontStyle.Bold);
             this.btnTrailer.BackColor = Color.FromArgb(60, 40, 200);
@@ -321,7 +307,6 @@
             this.btnTrailer.FlatStyle = FlatStyle.Flat;
             this.btnTrailer.Cursor = Cursors.Hand;
 
-            // Play Button
             this.btnPlay.Text = "Visionner Film";
             this.btnPlay.Font = new Font("Segoe UI", 14, FontStyle.Bold);
             this.btnPlay.BackColor = Color.FromArgb(60, 40, 200);
@@ -331,12 +316,10 @@
             this.btnPlay.FlatStyle = FlatStyle.Flat;
             this.btnPlay.Cursor = Cursors.Hand;
 
-            // Add all controls to form
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.lblReturn);
             this.Controls.Add(this.lblTitle);
 
-            // Add label titles
             this.Controls.Add(this.lblYearLabel);
             this.Controls.Add(this.lblDurationLabel);
             this.Controls.Add(this.lblPriceLabel);
@@ -347,7 +330,6 @@
             this.Controls.Add(this.lblKeywordsLabel);
             this.Controls.Add(this.lblSynopsisLabel);
 
-            // Add label values
             this.Controls.Add(this.lblYear);
             this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.lblPrice);

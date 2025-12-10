@@ -6,8 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TP3Genie2.Domain.Entities;
+using TP3Genie2.Domain.Enums;
 using TP3Genie2.Domain.Interfaces;
-using TP3Genie2.Infrastructure.Services;
 
 namespace TP3Genie2.WinForms
 {
@@ -39,12 +39,24 @@ namespace TP3Genie2.WinForms
             btnClearFilters.Click += BtnClearFilters_Click;
 
             linkDeconnexion.Click += LinkDeconnexion_Click;
+            linkGestionFilms.Click += LinkGestionFilms_Click;
         }
 
         private void FormConsulterFilms_Load(object sender, EventArgs e)
         {
+            var user = _authService.GetLoggedUser();
+            if (user != null && user.Role == UserRole.Administrateur)
+                linkGestionFilms.Visible = true;
+
             LoadCategories();
             LoadFilms();
+        }
+
+        private void LinkGestionFilms_Click(object sender, EventArgs e)
+        {
+            var gestion = _provider.GetRequiredService<FormGestionFilms>();
+            gestion.Show();
+            this.Hide();
         }
 
         private void LoadCategories()
