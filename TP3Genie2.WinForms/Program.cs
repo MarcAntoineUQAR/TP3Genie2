@@ -22,6 +22,8 @@ namespace TP3Genie2.WinForms
 
             services.AddTransient<FormLogin>();
             services.AddTransient<FormConsulterFilms>();
+            services.AddTransient<FormGestionFilms>();
+            services.AddTransient<FormProfilAdmin>();
 
             services.AddScoped<FormLogin>();
             services.AddScoped<FormRegister>();
