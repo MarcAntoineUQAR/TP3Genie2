@@ -142,187 +142,188 @@ namespace TP3Genie2.Infrastructure.Data
                 context.SaveChanges();
             }
 
+
             List<Film> seededFilms = new List<Film>();
 
             if (!context.Films.Any())
             {
                 seededFilms = new List<Film>
-            {
-                new Film
                 {
-                    Titre = "The Matrix",
-                    AnneeSortie = 1999,
-                    Duree = 136,
-                    Synopsis = "Un pirate informatique découvre la vérité sur la Matrice.",
-                    Prix = 12.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "matrix.jpg",
-                    BandeAnnoncePath = "matrix_trailer.mp4",
-                    CategorieId = cat["Science-fiction"].Id,
-                    MotsClés = "Action;Futur;Science-fiction;Cyberpunk",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Japonais" || p.Langue == "Arabe").ToList()
-                },
-                new Film
-                {
-                    Titre = "Interstellar",
-                    AnneeSortie = 2014,
-                    Duree = 169,
-                    Synopsis = "Une équipe d'explorateurs voyage à travers un trou de ver pour sauver l'humanité.",
-                    Prix = 15.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "interstellar.jpg",
-                    BandeAnnoncePath = "interstellar_trailer.mp4",
-                    CategorieId = cat["Science-fiction"].Id,
-                    MotsClés = "Espace;Aventure;Science-fiction;Famille",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "The Matrix",
+                        AnneeSortie = 1999,
+                        Duree = 136,
+                        Synopsis = "Un pirate informatique découvre la vérité sur la Matrice.",
+                        Prix = 12.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "matrix.jpg",
+                        BandeAnnoncePath = "matrix_trailer.mp4",
+                        CategorieId = cat["Science-fiction"].Id,
+                        MotsClés = "Action;Futur;Science-fiction;Cyberpunk",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Japonais" || p.Langue == "Arabe").ToList()
+                    },
+                    new Film
+                    {
+                        Titre = "Interstellar",
+                        AnneeSortie = 2014,
+                        Duree = 169,
+                        Synopsis = "Une équipe d'explorateurs voyage à travers un trou de ver pour sauver l'humanité.",
+                        Prix = 15.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "interstellar.jpg",
+                        BandeAnnoncePath = "interstellar_trailer.mp4",
+                        CategorieId = cat["Science-fiction"].Id,
+                        MotsClés = "Espace;Aventure;Science-fiction;Famille",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Inception",
-                    AnneeSortie = 2010,
-                    Duree = 148,
-                    Synopsis = "Un voleur infiltre les rêves pour implanter une idée.",
-                    Prix = 14.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "inception.jpg",
-                    BandeAnnoncePath = "inception_trailer.mp4",
-                    CategorieId = cat["Action"].Id,
-                    MotsClés = "Rêves;Action;Science-fiction;Thriller",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Espagnol").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Inception",
+                        AnneeSortie = 2010,
+                        Duree = 148,
+                        Synopsis = "Un voleur infiltre les rêves pour implanter une idée.",
+                        Prix = 14.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "inception.jpg",
+                        BandeAnnoncePath = "inception_trailer.mp4",
+                        CategorieId = cat["Action"].Id,
+                        MotsClés = "Rêves;Action;Science-fiction;Thriller",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Espagnol").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Mad Max: Fury Road",
-                    AnneeSortie = 2015,
-                    Duree = 120,
-                    Synopsis = "Dans un désert post-apocalyptique, une femme se rebelle contre un tyran.",
-                    Prix = 13.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "madmax.jpg",
-                    BandeAnnoncePath = "madmax_trailer.mp4",
-                    CategorieId = cat["Action"].Id,
-                    MotsClés = "Post-apocalyptique;Action;Aventure;Dystopie",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Allemand").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Mad Max: Fury Road",
+                        AnneeSortie = 2015,
+                        Duree = 120,
+                        Synopsis = "Dans un désert post-apocalyptique, une femme se rebelle contre un tyran.",
+                        Prix = 13.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "madmax.jpg",
+                        BandeAnnoncePath = "madmax_trailer.mp4",
+                        CategorieId = cat["Action"].Id,
+                        MotsClés = "Post-apocalyptique;Action;Aventure;Dystopie",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Allemand").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "The Godfather",
-                    AnneeSortie = 1972,
-                    Duree = 175,
-                    Synopsis = "Le patriarche d'une famille mafieuse transfère le contrôle à son fils réticent.",
-                    Prix = 11.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "godfather.jpg",
-                    BandeAnnoncePath = "godfather_trailer.mp4",
-                    CategorieId = cat["Crime"].Id,
-                    MotsClés = "Mafia;Crime;Drame;Famille",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Italien").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Italien").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "The Godfather",
+                        AnneeSortie = 1972,
+                        Duree = 175,
+                        Synopsis = "Le patriarche d'une famille mafieuse transfère le contrôle à son fils réticent.",
+                        Prix = 11.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "godfather.jpg",
+                        BandeAnnoncePath = "godfather_trailer.mp4",
+                        CategorieId = cat["Crime"].Id,
+                        MotsClés = "Mafia;Crime;Drame;Famille",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Italien").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Italien").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Parasite",
-                    AnneeSortie = 2019,
-                    Duree = 132,
-                    Synopsis = "Une famille pauvre s'infiltre progressivement dans la maison d'une famille riche.",
-                    Prix = 13.49m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "parasite.jpg",
-                    BandeAnnoncePath = "parasite_trailer.mp4",
-                    CategorieId = cat["Drame"].Id,
-                    MotsClés = "Inégalités sociales;Drame;Thriller;Noir",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Coréen" || p.Langue == "Anglais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Coréen").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Parasite",
+                        AnneeSortie = 2019,
+                        Duree = 132,
+                        Synopsis = "Une famille pauvre s'infiltre progressivement dans la maison d'une famille riche.",
+                        Prix = 13.49m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "parasite.jpg",
+                        BandeAnnoncePath = "parasite_trailer.mp4",
+                        CategorieId = cat["Drame"].Id,
+                        MotsClés = "Inégalités sociales;Drame;Thriller;Noir",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Coréen" || p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Coréen").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "The Shining",
-                    AnneeSortie = 1980,
-                    Duree = 146,
-                    Synopsis = "Un gardien d'hôtel isolé sombre peu à peu dans la folie.",
-                    Prix = 10.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "shining.jpg",
-                    BandeAnnoncePath = "shining_trailer.mp4",
-                    CategorieId = cat["Horreur"].Id,
-                    MotsClés = "Horreur;Psychologique;Isolé;Fantôme",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "The Shining",
+                        AnneeSortie = 1980,
+                        Duree = 146,
+                        Synopsis = "Un gardien d'hôtel isolé sombre peu à peu dans la folie.",
+                        Prix = 10.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "shining.jpg",
+                        BandeAnnoncePath = "shining_trailer.mp4",
+                        CategorieId = cat["Horreur"].Id,
+                        MotsClés = "Horreur;Psychologique;Isolé;Fantôme",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Se7en",
-                    AnneeSortie = 1995,
-                    Duree = 127,
-                    Synopsis = "Deux détectives traquent un tueur en série inspiré des sept péchés capitaux.",
-                    Prix = 11.49m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "se7en.jpg",
-                    BandeAnnoncePath = "se7en_trailer.mp4",
-                    CategorieId = cat["Thriller"].Id,
-                    MotsClés = "Crime;Thriller;Mystère;Psychologique",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Se7en",
+                        AnneeSortie = 1995,
+                        Duree = 127,
+                        Synopsis = "Deux détectives traquent un tueur en série inspiré des sept péchés capitaux.",
+                        Prix = 11.49m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "se7en.jpg",
+                        BandeAnnoncePath = "se7en_trailer.mp4",
+                        CategorieId = cat["Thriller"].Id,
+                        MotsClés = "Crime;Thriller;Mystère;Psychologique",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Toy Story",
-                    AnneeSortie = 1995,
-                    Duree = 81,
-                    Synopsis = "Les jouets d'un petit garçon prennent vie lorsque personne ne les regarde.",
-                    Prix = 9.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "toystory.jpg",
-                    BandeAnnoncePath = "toystory_trailer.mp4",
-                    CategorieId = cat["Animation"].Id,
-                    MotsClés = "Animation;Aventure;Comédie;Familial",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Toy Story",
+                        AnneeSortie = 1995,
+                        Duree = 81,
+                        Synopsis = "Les jouets d'un petit garçon prennent vie lorsque personne ne les regarde.",
+                        Prix = 9.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "toystory.jpg",
+                        BandeAnnoncePath = "toystory_trailer.mp4",
+                        CategorieId = cat["Animation"].Id,
+                        MotsClés = "Animation;Aventure;Comédie;Familial",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Le Roi Lion",
-                    AnneeSortie = 1994,
-                    Duree = 88,
-                    Synopsis = "Un jeune lion doit accepter son destin de roi.",
-                    Prix = 9.99m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "lionking.jpg",
-                    BandeAnnoncePath = "lionking_trailer.mp4",
-                    CategorieId = cat["Familial"].Id,
-                    MotsClés = "Animation;Aventure;Drame;Musical",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
-                },
+                    new Film
+                    {
+                        Titre = "Le Roi Lion",
+                        AnneeSortie = 1994,
+                        Duree = 88,
+                        Synopsis = "Un jeune lion doit accepter son destin de roi.",
+                        Prix = 9.99m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "lionking.jpg",
+                        BandeAnnoncePath = "lionking_trailer.mp4",
+                        CategorieId = cat["Familial"].Id,
+                        MotsClés = "Animation;Aventure;Drame;Musical",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
+                    },
 
-                new Film
-                {
-                    Titre = "Titanic",
-                    AnneeSortie = 1997,
-                    Duree = 195,
-                    Synopsis = "Une histoire d'amour tragique à bord du Titanic.",
-                    Prix = 12.49m,
-                    Statut = FilmStatus.Disponible,
-                    AffichePath = "titanic.jpg",
-                    BandeAnnoncePath = "titanic_trailer.mp4",
-                    CategorieId = cat["Romance"].Id,
-                    MotsClés = "Romance;Drame;Historique;Tragédie",
-                    PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList(),
-                    SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand" || p.Langue == "Italien").ToList()
-                }
-            };
+                    new Film
+                    {
+                        Titre = "Titanic",
+                        AnneeSortie = 1997,
+                        Duree = 195,
+                        Synopsis = "Une histoire d'amour tragique à bord du Titanic.",
+                        Prix = 12.49m,
+                        Statut = FilmStatus.Disponible,
+                        AffichePath = "titanic.jpg",
+                        BandeAnnoncePath = "titanic_trailer.mp4",
+                        CategorieId = cat["Romance"].Id,
+                        MotsClés = "Romance;Drame;Historique;Tragédie",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand" || p.Langue == "Italien").ToList()
+                    }
+                };
 
                 context.Films.AddRange(seededFilms);
                 context.SaveChanges();

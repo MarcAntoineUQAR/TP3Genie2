@@ -38,6 +38,7 @@ namespace TP3Genie2.WinForms
 
             InitializeComponent();
 
+            // events
             this.Load += FormGestionFilms_Load;
             btnSearch.Click += BtnSearch_Click;
             lstFilms.SelectedIndexChanged += LstFilms_SelectedIndexChanged;
@@ -53,8 +54,11 @@ namespace TP3Genie2.WinForms
             linkConsulterFilm.LinkClicked += LinkConsulterFilm_LinkClicked;
         }
 
+        // ========= INIT =========
+
         private void FormGestionFilms_Load(object? sender, EventArgs e)
         {
+            // position right header links properly
             int rightMargin = 20;
             linkDeconnexion.Location = new Point(
                 this.ClientSize.Width - linkDeconnexion.Width - rightMargin,
@@ -66,9 +70,16 @@ namespace TP3Genie2.WinForms
 
             lblTabProfil.Click += LblTabProfil_Click;
 
+            // enum values for status
             cbStatut.DataSource = Enum.GetValues(typeof(FilmStatus));
+
+            // categories
             LoadCategories();
+
+            // languages
             LoadLanguages();
+
+            // list
             LoadFilms();
         }
 
@@ -103,6 +114,8 @@ namespace TP3Genie2.WinForms
             lstSousTitres.Items.AddRange(_availableLanguages);
         }
 
+        // ========= FILM LIST =========
+
         private void LoadFilms()
         {
             string query = txtSearch.Text.Trim();
@@ -135,6 +148,8 @@ namespace TP3Genie2.WinForms
             }
         }
 
+        // ========= FORM <-> FILM MAPPING =========
+
         private void FillFormFromFilm(Film film)
         {
             ClearFormControls(false);
@@ -142,6 +157,7 @@ namespace TP3Genie2.WinForms
             txtTitre.Text = film.Titre;
             txtAnnee.Text = film.AnneeSortie.ToString();
             txtDuree.Text = film.Duree.ToString();
+            cbStatut.SelectedItem = film.Statut;
             txtPrix.Text = film.Prix.ToString("0.00");
             cbStatut.SelectedItem = film.Statut;
             txtSynopsis.Text = film.Synopsis;
@@ -163,6 +179,7 @@ namespace TP3Genie2.WinForms
                     lstAudio.SetSelected(i, true);
             }
 
+            // subtitles
             for (int i = 0; i < lstSousTitres.Items.Count; i++)
             {
                 string lang = lstSousTitres.Items[i].ToString()!;
@@ -200,6 +217,8 @@ namespace TP3Genie2.WinForms
             ClearFormControls();
         }
 
+        // ========= POSTER =========
+
         private void BtnBrowsePoster_Click(object? sender, EventArgs e)
         {
             using var ofd = new OpenFileDialog
@@ -230,12 +249,15 @@ namespace TP3Genie2.WinForms
             }
         }
 
+        // ========= ADD / UPDATE / DELETE =========
+
         private bool TryBuildFilmFromForm(out Film film, bool forExisting = false)
         {
             film = forExisting && _selectedFilm != null
                 ? _selectedFilm
                 : new Film();
 
+            // validation
             if (string.IsNullOrWhiteSpace(txtTitre.Text))
             {
                 MessageBox.Show("Le titre est obligatoire.");
@@ -272,6 +294,7 @@ namespace TP3Genie2.WinForms
                 return false;
             }
 
+            // assign scalar properties
             film.Titre = txtTitre.Text.Trim();
             film.AnneeSortie = annee;
             film.Duree = duree;
@@ -291,6 +314,7 @@ namespace TP3Genie2.WinForms
                 film.PistesAudio.Add(new PisteAudio { Langue = item.ToString()! });
             }
 
+            // subtitles
             film.SousTitres.Clear();
             foreach (var item in lstSousTitres.SelectedItems)
             {
@@ -311,6 +335,7 @@ namespace TP3Genie2.WinForms
                 MessageBox.Show("Film ajouté.");
                 LoadFilms();
 
+                // select the new film
                 var added = _currentFilms.FirstOrDefault(f => f.Id == newFilm.Id);
                 if (added != null)
                 {
@@ -378,9 +403,12 @@ namespace TP3Genie2.WinForms
             }
         }
 
+        // ========= NAVIGATION / LOGOUT =========
+
         private void LinkDeconnexion_LinkClicked(object? sender, LinkLabelLinkClickedEventArgs e)
         {
             _authService.Logout();
+
             var login = _provider.GetRequiredService<FormLogin>();
             login.Show();
             this.Hide();
@@ -396,6 +424,7 @@ namespace TP3Genie2.WinForms
         private sealed class FilmListItem
         {
             public Film Film { get; }
+
             public FilmListItem(Film film) => Film = film;
             public override string ToString() => $"{Film.Titre} ({Film.AnneeSortie})";
         }

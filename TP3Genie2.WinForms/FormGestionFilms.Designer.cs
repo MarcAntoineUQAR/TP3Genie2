@@ -7,22 +7,26 @@ namespace TP3Genie2.WinForms
     {
         private System.ComponentModel.IContainer components = null;
 
+        // HEADER
         private Panel panelHeader;
         private Label labelLogo;
         private LinkLabel linkConsulterFilm;
         private LinkLabel linkHeaderProfil;
         private LinkLabel linkDeconnexion;
 
+        // SECTION TABS
         private Panel panelTabs;
         private Label lblTabGestion;
         private Label lblTabStats;
         private Label lblTabProfil;
 
+        // LEFT (list + search)
         private Panel panelLeft;
         private TextBox txtSearch;
         private Button btnSearch;
         private ListBox lstFilms;
 
+        // RIGHT (details)
         private Panel panelRight;
         private Button btnClear;
 
@@ -75,11 +79,13 @@ namespace TP3Genie2.WinForms
         {
             components = new System.ComponentModel.Container();
 
+            // ========= FORM =========
             this.Text = "Gestion des films";
             this.BackColor = Color.White;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Maximized;
 
+            // ========= HEADER =========
             panelHeader = new Panel
             {
                 BackColor = Color.FromArgb(60, 40, 200),
@@ -100,6 +106,7 @@ namespace TP3Genie2.WinForms
             {
                 Text = "Consulter Film",
                 LinkColor = Color.White,
+                ActiveLinkColor = Color.White,
                 AutoSize = true,
                 Location = new Point(150, 18)
             };
@@ -108,7 +115,6 @@ namespace TP3Genie2.WinForms
             {
                 Text = "Consulter Profil",
                 LinkColor = Color.White,
-                AutoSize = true
             };
 
             linkDeconnexion = new LinkLabel
@@ -118,11 +124,16 @@ namespace TP3Genie2.WinForms
                 AutoSize = true
             };
 
+            // will position in OnLoad, but set provisional location
+            linkHeaderProfil.Location = new Point(1000, 18);
+            linkDeconnexion.Location = new Point(1120, 18);
+
             panelHeader.Controls.Add(labelLogo);
             panelHeader.Controls.Add(linkConsulterFilm);
             panelHeader.Controls.Add(linkHeaderProfil);
             panelHeader.Controls.Add(linkDeconnexion);
 
+            // ========= TABS =========
             panelTabs = new Panel
             {
                 Dock = DockStyle.Top,
@@ -134,6 +145,7 @@ namespace TP3Genie2.WinForms
             {
                 Text = "Gestion Films",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.Black,
                 AutoSize = true,
                 Location = new Point(10, 8)
             };
@@ -142,6 +154,7 @@ namespace TP3Genie2.WinForms
             {
                 Text = "Statistiques",
                 Font = new Font("Segoe UI", 10),
+                ForeColor = Color.Black,
                 AutoSize = true,
                 Location = new Point(130, 8)
             };
@@ -150,6 +163,7 @@ namespace TP3Genie2.WinForms
             {
                 Text = "Profil",
                 Font = new Font("Segoe UI", 10),
+                ForeColor = Color.Black,
                 AutoSize = true,
                 Location = new Point(230, 8)
             };
@@ -158,6 +172,7 @@ namespace TP3Genie2.WinForms
             panelTabs.Controls.Add(lblTabStats);
             panelTabs.Controls.Add(lblTabProfil);
 
+            // ========= LEFT PANEL =========
             panelLeft = new Panel
             {
                 BackColor = Color.FromArgb(240, 240, 240),
@@ -195,6 +210,7 @@ namespace TP3Genie2.WinForms
             panelLeft.Controls.Add(btnSearch);
             panelLeft.Controls.Add(lstFilms);
 
+            // ========= RIGHT PANEL =========
             panelRight = new Panel
             {
                 BackColor = Color.FromArgb(245, 245, 245),
@@ -216,10 +232,12 @@ namespace TP3Genie2.WinForms
             int inputX = 180;
             int rowY = 40;
             int rowSpacing = 40;
+            int inputWidth = 260;
 
             lblTitre = new Label { Text = "Titre", Location = new Point(labelX, rowY) };
             txtTitre = new TextBox { Location = new Point(inputX, rowY - 3), Width = 260 };
 
+            // Année
             rowY += rowSpacing;
             lblAnnee = new Label { Text = "Année de sortie", Location = new Point(labelX, rowY) };
             txtAnnee = new TextBox { Location = new Point(inputX, rowY - 3), Width = 80 };
@@ -227,6 +245,7 @@ namespace TP3Genie2.WinForms
             lblDuree = new Label { Text = "Durée (min)", Location = new Point(inputX + 120, rowY) };
             txtDuree = new TextBox { Location = new Point(inputX + 210, rowY - 3), Width = 80 };
 
+            // Statut
             rowY += rowSpacing;
             lblStatut = new Label { Text = "Statut", Location = new Point(labelX, rowY) };
             cbStatut = new ComboBox { Location = new Point(inputX, rowY - 3), Width = 150, DropDownStyle = ComboBoxStyle.DropDownList };
@@ -234,23 +253,28 @@ namespace TP3Genie2.WinForms
             lblPrix = new Label { Text = "Prix ($)", Location = new Point(inputX + 200, rowY) };
             txtPrix = new TextBox { Location = new Point(inputX + 260, rowY - 3), Width = 80 };
 
+            // Catégorie
             rowY += rowSpacing;
             lblCategorie = new Label { Text = "Catégorie", Location = new Point(labelX, rowY) };
             cbCategorie = new ComboBox { Location = new Point(inputX, rowY - 3), Width = 260, DropDownStyle = ComboBoxStyle.DropDownList };
 
+            // LANGUE DISPONIBLE
             rowY += rowSpacing;
             lblLanguesAudio = new Label { Text = "Langues audio", Location = new Point(labelX, rowY) };
             lstAudio = new ListBox { Location = new Point(inputX, rowY + 20), Size = new Size(260, 70), SelectionMode = SelectionMode.MultiExtended };
 
+            // SOUS-TITRES DISPONIBLES
             rowY += 100;
             lblSousTitres = new Label { Text = "Sous-titres", Location = new Point(labelX, rowY) };
             lstSousTitres = new ListBox { Location = new Point(inputX, rowY + 20), Size = new Size(260, 70), SelectionMode = SelectionMode.MultiExtended };
 
+            // Poster
             rowY += 120;
             lblPoster = new Label { Text = "Poster", Location = new Point(labelX, rowY) };
             txtPosterPath = new TextBox { Location = new Point(inputX, rowY - 3), Width = 220 };
             btnBrowsePoster = new Button { Text = "...", Location = new Point(inputX + 230, rowY - 4), Size = new Size(30, 24) };
 
+            // Synopsis
             rowY += rowSpacing;
             lblSynopsis = new Label { Text = "Synopsis", Location = new Point(labelX, rowY) };
             txtSynopsis = new TextBox
@@ -302,6 +326,10 @@ namespace TP3Genie2.WinForms
                 Location = new Point(inputX + 300, bottomY)
             };
 
+            panelRight.Controls.Add(btnSupprimer);
+            panelRight.Controls.Add(btnModifier);
+            panelRight.Controls.Add(btnAjouter);
+
             panelRight.Controls.Add(btnClear);
             panelRight.Controls.AddRange(new Control[]
             {
@@ -319,6 +347,7 @@ namespace TP3Genie2.WinForms
                 btnSupprimer, btnModifier, btnAjouter
             });
 
+            // ========= ADD TO FORM =========
             this.Controls.Add(panelRight);
             this.Controls.Add(panelLeft);
             this.Controls.Add(panelTabs);
