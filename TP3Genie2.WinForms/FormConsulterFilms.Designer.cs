@@ -9,7 +9,7 @@ namespace TP3Genie2.WinForms
 
         private Panel panelHeader;
         private Label labelLogo;
-        private LinkLabel linkConsulterFilm;
+        private LinkLabel linkGestionFilms;
         private LinkLabel linkProfil;
         private LinkLabel linkDeconnexion;
 
@@ -62,12 +62,13 @@ namespace TP3Genie2.WinForms
                 Location = new Point(15, 8)
             };
 
-            linkConsulterFilm = new LinkLabel
+            linkGestionFilms = new LinkLabel
             {
-                Text = "Consulter Film",
+                Text = "Page d'administration",
                 Location = new Point(150, 18),
                 LinkColor = Color.White,
-                AutoSize = true
+                AutoSize = true,
+                Visible = false
             };
 
             linkProfil = new LinkLabel
@@ -87,7 +88,7 @@ namespace TP3Genie2.WinForms
             };
 
             panelHeader.Controls.Add(labelLogo);
-            panelHeader.Controls.Add(linkConsulterFilm);
+            panelHeader.Controls.Add(linkGestionFilms);
             panelHeader.Controls.Add(linkProfil);
             panelHeader.Controls.Add(linkDeconnexion);
 
@@ -148,7 +149,6 @@ namespace TP3Genie2.WinForms
                 btnFiltrer, btnClearFilters
             });
 
-
             lblListeFilms = new Label
             {
                 Text = "Liste des films:",
@@ -166,7 +166,6 @@ namespace TP3Genie2.WinForms
                 FlowDirection = FlowDirection.LeftToRight,
                 Padding = new Padding(20)
             };
-
 
             this.Controls.Add(panelFilms);
             this.Controls.Add(lblListeFilms);
