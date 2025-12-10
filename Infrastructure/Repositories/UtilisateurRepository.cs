@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TP3Genie2.Domain.Entities;
 using TP3Genie2.Domain.Interfaces;
 using TP3Genie2.Infrastructure.Data;
@@ -15,12 +16,16 @@ namespace TP3Genie2.Infrastructure.Repositories
 
         public Utilisateur? GetById(int id)
         {
-            return _context.Utilisateurs.Find(id);
+            return _context.Utilisateurs
+                .Include(u => u.Membre)
+                .FirstOrDefault(u => u.Id == id);
         }
 
         public Utilisateur? GetByUsername(string username)
         {
-            return _context.Utilisateurs.FirstOrDefault(u => u.Username == username);
+            return _context.Utilisateurs
+                .Include(u => u.Membre)
+                .FirstOrDefault(u => u.Username == username);
         }
 
         public void Add(Utilisateur user)

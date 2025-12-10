@@ -60,13 +60,12 @@ namespace TP3Genie2.WinForms
             _current.Username = txtUsername.Text.Trim();
             _current.Password = txtPassword.Text.Trim();
 
-            _userService.Update(_current);
-
             if (_current.Membre != null)
             {
                 _current.Membre.Email = txtEmail.Text.Trim();
-                _membreService.Update(_current.Membre);
             }
+
+            _userService.Update(_current);
 
             MessageBox.Show("Profil mis à jour.");
 
