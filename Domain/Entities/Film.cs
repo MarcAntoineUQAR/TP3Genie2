@@ -27,5 +27,6 @@ namespace TP3Genie2.Domain.Entities
         public ICollection<PisteSousTitre> SousTitres { get; set; } = new List<PisteSousTitre>();
         public ICollection<PisteAudio> PistesAudio { get; set; } = new List<PisteAudio>();
         public ICollection<Cote> Cotes { get; set; } = new List<Cote>();
+        public string MotsClés { get; set; } = "";
     }
 }

@@ -40,6 +40,9 @@ namespace TP3Genie2.WinForms
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IUtilisateurService, UtilisateurService>();
 
+            services.AddTransient<ConsulterSingleFilm>();
+            services.AddScoped<ConsulterSingleFilm>();
+
             var provider = services.BuildServiceProvider();
 
             services.AddSingleton<IServiceProvider>(provider);

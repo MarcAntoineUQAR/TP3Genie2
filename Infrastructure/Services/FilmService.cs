@@ -41,5 +41,10 @@ namespace TP3Genie2.Infrastructure.Services
         {
             return _repo.GetAllCategories();
         }
+
+        public List<Film> SearchByKeywords(string keywordsQuery)
+        {
+            return _repo.SearchByKeywords(keywordsQuery);
+        }
     }
 }

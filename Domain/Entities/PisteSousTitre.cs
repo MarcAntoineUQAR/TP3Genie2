@@ -12,7 +12,6 @@ namespace TP3Genie2.Domain.Entities
 		public int Id { get; set; }
 		public string Langue { get; set; } = null!;
 
-		public int FilmId { get; set; }
-		public Film Film { get; set; } = null!;
-	}
+        public ICollection<Film> Films { get; set; } = new List<Film>();
+    }
 }

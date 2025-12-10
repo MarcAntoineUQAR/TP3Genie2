@@ -22,6 +22,36 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FilmPisteAudio", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PistesAudioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "PistesAudioId");
+
+                    b.HasIndex("PistesAudioId");
+
+                    b.ToTable("FilmPisteAudio");
+                });
+
+            modelBuilder.Entity("FilmPisteSousTitre", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SousTitresId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "SousTitresId");
+
+                    b.HasIndex("SousTitresId");
+
+                    b.ToTable("FilmPisteSousTitre");
+                });
+
             modelBuilder.Entity("TP3Genie2.Domain.Entities.Abonnement", b =>
                 {
                     b.Property<int>("Id")
@@ -197,6 +227,10 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Duree")
                         .HasColumnType("int");
 
+                    b.Property<string>("MotsClés")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Prix")
                         .HasColumnType("decimal(18,2)");
 
@@ -311,16 +345,11 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Langue")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
 
                     b.ToTable("PistesAudio");
                 });
@@ -333,16 +362,11 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Langue")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
 
                     b.ToTable("PistesSousTitre");
                 });
@@ -425,6 +449,36 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MembreId");
 
                     b.ToTable("Visionnements");
+                });
+
+            modelBuilder.Entity("FilmPisteAudio", b =>
+                {
+                    b.HasOne("TP3Genie2.Domain.Entities.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TP3Genie2.Domain.Entities.PisteAudio", null)
+                        .WithMany()
+                        .HasForeignKey("PistesAudioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FilmPisteSousTitre", b =>
+                {
+                    b.HasOne("TP3Genie2.Domain.Entities.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TP3Genie2.Domain.Entities.PisteSousTitre", null)
+                        .WithMany()
+                        .HasForeignKey("SousTitresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TP3Genie2.Domain.Entities.Abonnement", b =>
@@ -526,28 +580,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Utilisateur");
                 });
 
-            modelBuilder.Entity("TP3Genie2.Domain.Entities.PisteAudio", b =>
-                {
-                    b.HasOne("TP3Genie2.Domain.Entities.Film", "Film")
-                        .WithMany("PistesAudio")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Film");
-                });
-
-            modelBuilder.Entity("TP3Genie2.Domain.Entities.PisteSousTitre", b =>
-                {
-                    b.HasOne("TP3Genie2.Domain.Entities.Film", "Film")
-                        .WithMany("SousTitres")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Film");
-                });
-
             modelBuilder.Entity("TP3Genie2.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("TP3Genie2.Domain.Entities.Compte", "Compte")
@@ -600,10 +632,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Cotes");
 
                     b.Navigation("Credits");
-
-                    b.Navigation("PistesAudio");
-
-                    b.Navigation("SousTitres");
 
                     b.Navigation("Visionnements");
                 });
