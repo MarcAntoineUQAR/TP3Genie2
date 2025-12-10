@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Drawing;
 using System.IO;
@@ -85,8 +86,22 @@ namespace TP3Genie2.WinForms
             panelFilms.Controls.Clear();
 
             string titre = txtTitre.Text.Trim();
+            string keywords = txtMotsCles.Text.Trim();
+            var films = new List<Film>();
+            if (keywords.IsNullOrEmpty())
+            {
+                films = _filmService.Search(titre);
+            }
+            else
+            {
+                films = _filmService.SearchByKeywords(keywords);
+            }
 
-            var films = _filmService.Search(titre);
+            if (!titre.IsNullOrEmpty())
+            {
+                films = films.Where(f => f.Titre.StartsWith(titre)).ToList();
+            }
+
 
             if (cbCategorie.SelectedItem is Categorie cat)
                 films = films.Where(f => f.CategorieId == cat.Id).ToList();
@@ -113,6 +128,15 @@ namespace TP3Genie2.WinForms
             this.Close();
         }
 
+        private void FilmCard_Click(int id)
+        {
+            var singleFilmForm = _provider.GetRequiredService<ConsulterSingleFilm>();
+            singleFilmForm.InitializeFilm(id);
+            singleFilmForm.Show();
+            this.Hide();
+        }
+
+
         private Panel CreateFilmCard(Film f)
         {
             var card = new Panel
@@ -120,7 +144,8 @@ namespace TP3Genie2.WinForms
                 Width = 220,
                 Height = 360,
                 Margin = new Padding(20),
-                BorderStyle = BorderStyle.FixedSingle
+                BorderStyle = BorderStyle.FixedSingle,
+                
             };
 
             var img = new PictureBox
@@ -171,6 +196,10 @@ namespace TP3Genie2.WinForms
             card.Controls.Add(lblTitle);
             card.Controls.Add(lblCat);
             card.Controls.Add(lblInfo);
+
+            card.Click += (s, e) => FilmCard_Click(f.Id);
+            foreach (Control c in card.Controls)
+                c.Click += (s, e) => FilmCard_Click(f.Id);
 
             return card;
         }

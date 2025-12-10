@@ -11,6 +11,9 @@ namespace TP3Genie2.Domain.Interfaces
 	{
 		Film? GetById(int id);
 		List<Film> Search(string query);
+
+		List<Film> SearchByKeywords(string keywordsQuery);
+
 		void Add(Film film);
 		void Update(Film film);
 		void Delete(int id);

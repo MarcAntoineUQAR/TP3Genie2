@@ -59,5 +59,12 @@ namespace TP3Genie2.Infrastructure.Repositories
                 .OrderBy(c => c.Nom)
                 .ToList();
         }
+
+		public List<Film> SearchByKeywords(string keywordsQuery)
+		{
+			return _context.Films
+				.Where(f => f.MotsClés.Contains(keywordsQuery))
+				.OrderBy(f => f.Titre).ToList();
+		}
     }
 }

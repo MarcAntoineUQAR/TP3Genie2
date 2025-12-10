@@ -89,14 +89,12 @@ namespace TP3Genie2.Infrastructure.Data
             // Relation film-pistes audio (1-*)
             modelBuilder.Entity<Film>()
                 .HasMany(f => f.PistesAudio)
-                .WithOne(pa => pa.Film)
-                .HasForeignKey(pa => pa.FilmId);
+                .WithMany(pa => pa.Films);
 
             // Relation film-pistes sous-titre (1-*)
             modelBuilder.Entity<Film>()
                 .HasMany(f => f.SousTitres)
-                .WithOne(ps => ps.Film)
-                .HasForeignKey(ps => ps.FilmId);
+                .WithMany(ps => ps.Films);
 
             // Relation film-visionnements (1-*)
             modelBuilder.Entity<Film>()

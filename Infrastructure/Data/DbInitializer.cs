@@ -132,6 +132,93 @@ namespace TP3Genie2.Infrastructure.Data
 
             var cat = context.Categories.ToDictionary(c => c.Nom, c => c);
 
+            if (!context.PistesAudio.Any())
+            {
+                context.PistesAudio.RemoveRange(context.PistesAudio);
+                context.SaveChanges();
+
+                var pisteAudios = new List<PisteAudio>
+                {
+                    new PisteAudio
+                    {
+                        Langue = "Anglais"
+                    },
+                    new PisteAudio
+                    {
+                        Langue = "Francais"
+                    },
+                     new PisteAudio
+                    {
+                        Langue = "Espagnol"
+                    },
+                      new PisteAudio
+                    {
+                        Langue = "Allemand"
+                    },
+                       new PisteAudio
+                    {
+                        Langue = "Mandarin"
+                    },
+                        new PisteAudio
+                    {
+                        Langue = "Arabe"
+                    },
+                            new PisteAudio
+                    {
+                        Langue = "Japonais"
+                    }
+                };
+                context.PistesAudio.AddRange(pisteAudios);
+                context.SaveChanges();
+            }
+
+            if (!context.PistesSousTitre.Any())
+            {
+                context.PistesSousTitre.RemoveRange(context.PistesSousTitre);
+                context.SaveChanges();
+
+                var pisteSousTitre = new List<PisteSousTitre>
+                {
+                    new PisteSousTitre
+                    {
+                        Langue = "Anglais"
+                    },
+                    new PisteSousTitre
+                    {
+                        Langue = "Francais"
+                    },
+                     new PisteSousTitre
+                    {
+                        Langue = "Espagnol"
+                    },
+                      new PisteSousTitre
+                    {
+                        Langue = "Allemand"
+                    },
+                       new PisteSousTitre
+                    {
+                        Langue = "Mandarin"
+                    },
+                        new PisteSousTitre
+                    {
+                        Langue = "Arabe"
+                    },
+                            new PisteSousTitre
+                    {
+                        Langue = "Japonais"
+                    },
+                            new PisteSousTitre
+                    {
+                        Langue = "Coréen"
+                    },
+                            new PisteSousTitre
+                    {
+                        Langue = "Italien"
+                    },
+                };
+                context.PistesSousTitre.AddRange(pisteSousTitre);
+                context.SaveChanges();
+            }
             // Films
             if (!context.Films.Any())
             {
@@ -147,7 +234,12 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "matrix.jpg",
                         BandeAnnoncePath = "matrix_trailer.mp4",
-                        CategorieId = cat["Science-fiction"].Id
+                        CategorieId = cat["Science-fiction"].Id,
+                        MotsClés = "Action;Futur;Science-fiction;Cyberpunk",
+                        PistesAudio = context.PistesAudio
+                        .Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
+                        SousTitres = context.PistesSousTitre
+                        .Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Japonais" || p.Langue == "Arabe").ToList()
                     },
                     new Film
                     {
@@ -159,7 +251,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "interstellar.jpg",
                         BandeAnnoncePath = "interstellar_trailer.mp4",
-                        CategorieId = cat["Science-fiction"].Id
+                        CategorieId = cat["Science-fiction"].Id,
+                        MotsClés = "Espace;Aventure;Science-fiction;Famille",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
                     },
 
                     new Film
@@ -172,7 +267,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "inception.jpg",
                         BandeAnnoncePath = "inception_trailer.mp4",
-                        CategorieId = cat["Action"].Id
+                        CategorieId = cat["Action"].Id,
+                        MotsClés = "Rêves;Action;Science-fiction;Thriller",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Espagnol").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
                     },
                     new Film
                     {
@@ -184,7 +282,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "madmax.jpg",
                         BandeAnnoncePath = "madmax_trailer.mp4",
-                        CategorieId = cat["Action"].Id
+                        CategorieId = cat["Action"].Id,
+                        MotsClés = "Post-apocalyptique;Action;Aventure;Dystopie",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Allemand").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList()
                     },
 
                     new Film
@@ -197,7 +298,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "godfather.jpg",
                         BandeAnnoncePath = "godfather_trailer.mp4",
-                        CategorieId = cat["Crime"].Id
+                        CategorieId = cat["Crime"].Id,
+                        MotsClés = "Mafia;Crime;Drame;Famille",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Italien").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Italien").ToList()
                     },
                     new Film
                     {
@@ -209,7 +313,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "parasite.jpg",
                         BandeAnnoncePath = "parasite_trailer.mp4",
-                        CategorieId = cat["Drame"].Id
+                        CategorieId = cat["Drame"].Id,
+                        MotsClés = "Inégalités sociales;Drame;Thriller;Noir",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Coréen" || p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Coréen").ToList()
                     },
 
                     new Film
@@ -222,7 +329,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "shining.jpg",
                         BandeAnnoncePath = "shining_trailer.mp4",
-                        CategorieId = cat["Horreur"].Id
+                        CategorieId = cat["Horreur"].Id,
+                        MotsClés = "Horreur;Psychologique;Isolé;Fantôme",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
                     },
                     new Film
                     {
@@ -234,7 +344,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "se7en.jpg",
                         BandeAnnoncePath = "se7en_trailer.mp4",
-                        CategorieId = cat["Thriller"].Id
+                        CategorieId = cat["Thriller"].Id,
+                        MotsClés = "Crime;Thriller;Mystère;Psychologique",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList()
                     },
 
                     new Film
@@ -247,7 +360,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "toystory.jpg",
                         BandeAnnoncePath = "toystory_trailer.mp4",
-                        CategorieId = cat["Animation"].Id
+                        CategorieId = cat["Animation"].Id,
+                        MotsClés = "Animation;Aventure;Comédie;Familial",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
                     },
                     new Film
                     {
@@ -259,7 +375,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "lionking.jpg",
                         BandeAnnoncePath = "lionking_trailer.mp4",
-                        CategorieId = cat["Familial"].Id
+                        CategorieId = cat["Familial"].Id,
+                        MotsClés = "Animation;Aventure;Drame;Musical",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Espagnol").ToList()
                     },
 
                     new Film
@@ -272,7 +391,10 @@ namespace TP3Genie2.Infrastructure.Data
                         Statut = FilmStatus.Disponible,
                         AffichePath = "titanic.jpg",
                         BandeAnnoncePath = "titanic_trailer.mp4",
-                        CategorieId = cat["Romance"].Id
+                        CategorieId = cat["Romance"].Id,
+                        MotsClés = "Romance;Drame;Historique;Tragédie",
+                        PistesAudio = context.PistesAudio.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand").ToList(),
+                        SousTitres = context.PistesSousTitre.Where(p => p.Langue == "Anglais" || p.Langue == "Francais" || p.Langue == "Allemand" || p.Langue == "Italien").ToList()
                     }
                 };
 
